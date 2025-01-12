@@ -11,13 +11,13 @@ public class Message {
     @Getter private static Message instance;
     private FileConfiguration config;
     private FileConfiguration menuConfig;
-    @Getter private final String title;
-    @Getter private final int size;
-    @Getter private final String giveEggs;
-    @Getter private final String notEggs;
-    @Getter private final String material;
-    @Getter private final String itemName;
-    @Getter private final List<String> itemLore;
+    @Getter private String title;
+    @Getter private int size;
+    @Getter private String giveEggs;
+    @Getter private String notEggs;
+    @Getter private String material;
+    @Getter private String itemName;
+    @Getter private List<String> itemLore;
 
     public Message(FileConfiguration cfg, FileConfiguration menuCfg) {
         instance = this;

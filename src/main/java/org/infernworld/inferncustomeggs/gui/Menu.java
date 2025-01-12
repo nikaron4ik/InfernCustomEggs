@@ -1,5 +1,6 @@
 package org.infernworld.inferncustomeggs.gui;
 
+import lombok.Getter;
 import lombok.val;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -10,11 +11,10 @@ import org.bukkit.inventory.ItemStack;
 import org.infernworld.inferncustomeggs.InfernCustomEggs;
 import org.infernworld.inferncustomeggs.util.Color;
 import org.infernworld.inferncustomeggs.util.Message;
-import org.jetbrains.annotations.NotNull;
 
 
 public class Menu implements InventoryHolder {
-    private final Inventory inventory;
+    @Getter private final Inventory inventory;
     private final InfernCustomEggs plugin;
     public Menu (InfernCustomEggs plugin) {
         Message msg = Message.getInstance();
@@ -38,10 +38,5 @@ public class Menu implements InventoryHolder {
             item.setItemMeta(meta);
             inventory.setItem(slot, item);
         }
-    }
-
-    @Override
-    public @NotNull Inventory getInventory() {
-        return inventory;
     }
 }
