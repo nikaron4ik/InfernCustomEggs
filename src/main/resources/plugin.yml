@@ -1,0 +1,6 @@
+name: InfernCustomEggs
+version: '${project.version}'
+main: org.infernworld.inferncustomeggs.InfernCustomEggs
+api-version: '1.16'
+commands:
+  eggs: {}
