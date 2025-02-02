@@ -1,11 +1,14 @@
 package org.infernworld.inferncustomeggs.command;
 
 import lombok.val;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.infernworld.inferncustomeggs.InfernCustomEggs;
 import org.infernworld.inferncustomeggs.gui.Menu;
 import org.infernworld.inferncustomeggs.item.Item;
@@ -28,9 +31,17 @@ public class Commands implements CommandExecutor {
                     try {
                         amount = Integer.parseInt(args[2]);
                         item.setAmount(amount);
+
+                        ItemMeta meta = item.getItemMeta();
+                        if (meta != null) {
+                            NamespacedKey key = new NamespacedKey(plugin, "inferncustom_egg");
+                            meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "true");
+                            item.setItemMeta(meta);
+                        }
+
                         player.getInventory().addItem(item);
                     } catch (NumberFormatException e) {
-                        player.sendMessage("неверный симвло!");
+                        player.sendMessage("неверный символ!");
                     }
                     return true;
                 }

@@ -29,6 +29,12 @@ public class EggsClick {
         val items = config.getConfigurationSection("inventory.item");
         String category = null;
         int price = 0;
+
+        String inventoryTitle = player.getOpenInventory().getTitle();
+            if (!inventoryTitle.equalsIgnoreCase(msg.getInventoryTitle())) {
+                return;
+            }
+
         for (String key : items.getKeys(false)) {
             ConfigurationSection itemSection = items.getConfigurationSection(key);
             if (itemSection.getInt("slot") == slot) {
@@ -60,6 +66,8 @@ public class EggsClick {
         }
         return totalAmount;
     }
+
+
 
     private void EggsAmount(Player player, int price) {
         for (ItemStack item : player.getInventory().getStorageContents()) {

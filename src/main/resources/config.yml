@@ -1,7 +1,4 @@
 # Плагин "InfernCustomEggs" Версия плагина: 1.0v
-# Разработчик (По всем вопросам) -> Егор Татаркин (Ник в майне: EG_SH_NOT) vk.com/egortatarkin : @theegorhick (Telegram)
-#
-# Канал Великого Егшота -> t.me/egashotina
 
 item: # Настройка кастомного предмета
   material: PUFFERFISH_SPAWN_EGG # Материал
@@ -18,13 +15,13 @@ item: # Настройка кастомного предмета
 spawn-eggs: # Выдача рандомных яиц
   # Категории МОЖНО МЕНЯТЬ И ДОБАВЛЯТЬ СВОИ! Пример:
   default: # Название категории (можно поставить любое, главное в menu.yml изменить!)
-    - "give %player PIG_SPAWN_EGG 1" # Яйца призыва
+    - "give %player pig_spawn_egg 1" # Яйца призыва
   Lite:
-    - "give %player CREEPER_SPAWN_EGG 1"
-    - "give %player WITHER_SKELETON_SPAWN_EGG 1"
+    - "give %player creeper_spawn_egg 1"
+    - "give %player wither_skeleton_spawn_egg 1"
   Epic:
-    - "give %player EVOKER_SPAWN_EGG 1"
-    - "give %player ZOMBIFIED_PIGLIN_SPAWN_EGG 1"
+    - "give %player evoker_spawn_egg 1"
+    - "give %player zombified_piglin_spawn_egg 1"
 
 settings: # Настройка плагина
   sound-complete: ENTITY_PUFFER_FISH_BLOW_UP

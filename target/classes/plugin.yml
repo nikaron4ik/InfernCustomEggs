@@ -1,6 +1,0 @@
-name: InfernCustomEggs
-version: '1.0'
-main: org.infernworld.inferncustomeggs.InfernCustomEggs
-api-version: '1.16'
-commands:
-  eggs: {}

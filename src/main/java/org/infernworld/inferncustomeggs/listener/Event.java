@@ -38,7 +38,7 @@ public class Event implements Listener {
     }
     @EventHandler
     public void onInteractEvent(PlayerInteractEvent e) {
-        if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getItem() != null && e.getItem().isSimilar(items.items())) {
+        if (e.getItem().isSimilar(items.items())) {
             e.setCancelled(true);
         }
     }

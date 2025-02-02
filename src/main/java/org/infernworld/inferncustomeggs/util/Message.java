@@ -33,4 +33,8 @@ public class Message {
         this.itemName = Color.hex(config.getString(item + "name"));
         this.material = config.getString(item + "material");
     }
+
+    public String getInventoryTitle() {
+        return title;
+    }
 }
