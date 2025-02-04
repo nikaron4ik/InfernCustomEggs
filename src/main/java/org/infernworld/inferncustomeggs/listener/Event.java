@@ -1,6 +1,7 @@
 package org.infernworld.inferncustomeggs.listener;
 
 import lombok.val;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,6 +14,8 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.infernworld.inferncustomeggs.InfernCustomEggs;
 import org.infernworld.inferncustomeggs.item.Item;
 import org.infernworld.inferncustomeggs.util.Color;
@@ -44,7 +47,7 @@ public class Event implements Listener {
     }
     @EventHandler
     public void onInteractEvent(PlayerInteractEvent e) {
-        if (e.getItem() != null && e.getItem().isSimilar(items.items())) {
+        if (e.getItem() != null && isCustomEgg(e.getItem())) {
             e.setUseInteractedBlock(org.bukkit.event.Event.Result.ALLOW);
             e.setUseItemInHand(org.bukkit.event.Event.Result.DENY);
         }
@@ -53,14 +56,14 @@ public class Event implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
         if(e.getCurrentItem() != null && e.getInventory().getType() == InventoryType.DISPENSER ) {
-            if (e.getCurrentItem().isSimilar(items.items())) {
+            if (isCustomEgg(e.getCurrentItem())) {
                 e.setCancelled(true);
             }
         }
 
         if (e.getClick().isKeyboardClick()) {
             ItemStack hotbarItem = e.getWhoClicked().getInventory().getItem(e.getHotbarButton());
-            if(hotbarItem != null && hotbarItem.isSimilar(items.items()) && e.getInventory().getType() == InventoryType.DISPENSER) {
+            if(hotbarItem != null && isCustomEgg(hotbarItem) && e.getInventory().getType() == InventoryType.DISPENSER) {
                 e.setCancelled(true);
             }
         }
@@ -68,8 +71,17 @@ public class Event implements Listener {
 
     @EventHandler
     public void onInventoryMoveItem(InventoryMoveItemEvent e) {
-        if (e.getDestination().getType() == InventoryType.DISPENSER && e.getItem() != null && e.getItem().isSimilar(items.items())) {
+        if (e.getDestination().getType() == InventoryType.DISPENSER && e.getItem() != null && isCustomEgg(e.getItem())) {
             e.setCancelled(true);
         }
+    }
+
+    private boolean isCustomEgg(ItemStack item) {
+        if (item == null || !item.hasItemMeta()) {
+            return false;
+        }
+        ItemMeta meta = item.getItemMeta();
+        NamespacedKey key = new NamespacedKey(plugin, "lightcustom_egg");
+        return meta.getPersistentDataContainer().has(key, PersistentDataType.STRING);
     }
 }
