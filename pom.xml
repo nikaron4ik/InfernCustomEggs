@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.InfernWorld</groupId>
-  <artifactId>InfernCustomEggs</artifactId>
+  <artifactId>LightCustomEggs</artifactId>
   <version>1.0</version>
   <packaging>jar</packaging>
 
-  <name>InfernCustomEggs</name>
+  <name>LightCustomEggs</name>
 
   <properties>
     <java.version>1.8</java.version>

@@ -24,7 +24,7 @@ public class Commands implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         val player = (Player) sender;
             if (args.length == 3 && args[0].equalsIgnoreCase("give")) {
-                if (player.hasPermission("inferncustomeggs.give")) {
+                if (player.hasPermission("lightcustomeggs.give")) {
                     Item items = new Item(plugin);
                     ItemStack item = items.items();
                     int amount;
@@ -34,7 +34,7 @@ public class Commands implements CommandExecutor {
 
                         ItemMeta meta = item.getItemMeta();
                         if (meta != null) {
-                            NamespacedKey key = new NamespacedKey(plugin, "inferncustom_egg");
+                            NamespacedKey key = new NamespacedKey(plugin, "lightcustom_egg");
                             meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "true");
                             item.setItemMeta(meta);
                         }

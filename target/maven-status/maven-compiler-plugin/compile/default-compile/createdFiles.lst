@@ -1,0 +1,11 @@
+org\infernworld\inferncustomeggs\gui\Menu.class
+org\infernworld\inferncustomeggs\listener\EggsClick.class
+org\infernworld\inferncustomeggs\util\SoundUtil.class
+org\infernworld\inferncustomeggs\item\Item.class
+org\infernworld\inferncustomeggs\command\CmdTabCompleter.class
+org\infernworld\inferncustomeggs\util\Message.class
+org\infernworld\inferncustomeggs\util\RandomEggs.class
+org\infernworld\inferncustomeggs\command\Commands.class
+org\infernworld\inferncustomeggs\InfernCustomEggs.class
+org\infernworld\inferncustomeggs\util\Color.class
+org\infernworld\inferncustomeggs\listener\Event.class

@@ -20,7 +20,7 @@ public class CmdTabCompleter implements TabCompleter {
         }
     }
     public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
-        if (args.length > 3 || !sender.hasPermission("inferncustomeggs.give")) {
+        if (args.length > 3 || !sender.hasPermission("lightcustomeggs.give")) {
             return List.of();
         }
         if (args.length == 1) {

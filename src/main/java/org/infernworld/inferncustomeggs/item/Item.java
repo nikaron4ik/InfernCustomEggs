@@ -28,7 +28,7 @@ public class Item {
         List<String> lore = msg.getItemLore();
         meta.setLore(lore);
 
-        NamespacedKey key = new NamespacedKey(plugin, "inferncustom_egg");
+        NamespacedKey key = new NamespacedKey(plugin, "lightcustom_egg");
         meta.getPersistentDataContainer().set(key, PersistentDataType.STRING, "true");
 
         item.setItemMeta(meta);

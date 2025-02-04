@@ -5,7 +5,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.infernworld.inferncustomeggs.InfernCustomEggs;
 import org.infernworld.inferncustomeggs.item.Item;
@@ -38,8 +40,17 @@ public class Event implements Listener {
     }
     @EventHandler
     public void onInteractEvent(PlayerInteractEvent e) {
-        if (e.getItem().isSimilar(items.items())) {
+        if (e.getItem() != null && e.getItem().isSimilar(items.items())) {
             e.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent e) {
+        if(e.getCurrentItem() != null && e.getInventory().getType() == InventoryType.DISPENSER) {
+            if (e.getCurrentItem().isSimilar(items.items())) {
+                e.setCancelled(true);
+            }
         }
     }
 }

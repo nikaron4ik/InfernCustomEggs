@@ -40,8 +40,8 @@ public final class InfernCustomEggs extends JavaPlugin {
             }
         }
         new Message(config,menu);
-        Bukkit.getPluginCommand("eggs").setExecutor(new Commands(this));
-        Bukkit.getPluginCommand("eggs").setTabCompleter(new CmdTabCompleter());
+        Bukkit.getPluginCommand("parcelopenfragmenttrade").setExecutor(new Commands(this));
+        Bukkit.getPluginCommand("parcelopenfragmenttrade").setTabCompleter(new CmdTabCompleter());
         Bukkit.getPluginManager().registerEvents(new Event(this), this);
     }
 }
