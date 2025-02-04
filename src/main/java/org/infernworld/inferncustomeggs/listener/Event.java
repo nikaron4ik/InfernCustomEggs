@@ -41,7 +41,8 @@ public class Event implements Listener {
     @EventHandler
     public void onInteractEvent(PlayerInteractEvent e) {
         if (e.getItem() != null && e.getItem().isSimilar(items.items())) {
-            e.setCancelled(true);
+            e.setUseInteractedBlock(org.bukkit.event.Event.Result.ALLOW);
+            e.setUseItemInHand(org.bukkit.event.Event.Result.DENY);
         }
     }
 
