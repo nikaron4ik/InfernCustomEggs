@@ -8,8 +8,10 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.infernworld.inferncustomeggs.InfernCustomEggs;
 import org.infernworld.inferncustomeggs.item.Item;
@@ -50,7 +52,7 @@ public class Event implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
-        if(e.getCurrentItem() != null && e.getInventory().getType() == InventoryType.DISPENSER) {
+        if(e.getCurrentItem() != null && e.getInventory().getType() == InventoryType.DISPENSER ) {
             if (e.getCurrentItem().isSimilar(items.items())) {
                 e.setCancelled(true);
             }
@@ -61,6 +63,13 @@ public class Event implements Listener {
             if(hotbarItem != null && hotbarItem.isSimilar(items.items()) && e.getInventory().getType() == InventoryType.DISPENSER) {
                 e.setCancelled(true);
             }
+        }
+    }
+
+    @EventHandler
+    public void onInventoryMoveItem(InventoryMoveItemEvent e) {
+        if (e.getDestination().getType() == InventoryType.DISPENSER && e.getItem() != null && e.getItem().isSimilar(items.items())) {
+            e.setCancelled(true);
         }
     }
 }
