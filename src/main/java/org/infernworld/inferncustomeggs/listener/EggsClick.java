@@ -1,9 +1,12 @@
 package org.infernworld.inferncustomeggs.listener;
 
 import lombok.val;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 import org.infernworld.inferncustomeggs.InfernCustomEggs;
 import org.infernworld.inferncustomeggs.item.Item;
 import org.infernworld.inferncustomeggs.util.Color;
@@ -60,8 +63,12 @@ public class EggsClick {
     private int getEggs(Player player) {
         int totalAmount = 0;
         for (ItemStack stack : player.getInventory().getStorageContents()) {
-            if (stack != null && stack.isSimilar(items.items())) {
-                totalAmount += stack.getAmount();
+            if (stack != null && stack.hasItemMeta()) {
+                ItemMeta meta = stack.getItemMeta();
+                NamespacedKey key = new NamespacedKey(plugin, "lightcustom_egg");
+                if (meta.getPersistentDataContainer().has(key, PersistentDataType.STRING)) {
+                    totalAmount += stack.getAmount();
+                }
             }
         }
         return totalAmount;
@@ -71,17 +78,21 @@ public class EggsClick {
 
     private void EggsAmount(Player player, int price) {
         for (ItemStack item : player.getInventory().getStorageContents()) {
-            if (item != null && item.isSimilar(items.items())) {
-                int countAmount = item.getAmount();
-                if (countAmount >= price) {
-                    item.setAmount(countAmount - price);
-                    break;
-                } else {
-                    price -= countAmount;
-                    player.getInventory().setItem(player.getInventory().first(item), null);
-                }
-                if (price <= 0) {
-                    break;
+            if (item != null && item.hasItemMeta()) {
+                ItemMeta meta = item.getItemMeta();
+                NamespacedKey key = new NamespacedKey(plugin, "lightcustom_egg");
+                if(meta.getPersistentDataContainer().has(key, PersistentDataType.STRING)) {
+                    int countAmount = item.getAmount();
+                    if (countAmount >= price) {
+                        item.setAmount(countAmount - price);
+                        break;
+                    } else {
+                        price -= countAmount;
+                        player.getInventory().setItem(player.getInventory().first(item), null);
+                    }
+                    if (price <= 0) {
+                        break;
+                    }
                 }
             }
         }
