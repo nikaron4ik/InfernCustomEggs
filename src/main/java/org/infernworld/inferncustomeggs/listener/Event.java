@@ -7,11 +7,9 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockDispenseEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryDragEvent;
-import org.bukkit.event.inventory.InventoryMoveItemEvent;
-import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.event.inventory.*;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerSwapHandItemsEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -55,6 +53,15 @@ public class Event implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent e) {
+        if (e.getClick() == ClickType.SWAP_OFFHAND) {
+            ItemStack offHandItem = e.getWhoClicked().getInventory().getItemInOffHand();
+            if (offHandItem != null) {
+                if (isCustomEgg(offHandItem) && e.getInventory().getType() == InventoryType.DISPENSER) {
+                    e.setCancelled(true);
+                }
+            }
+        }
+
         if(e.getCurrentItem() != null && e.getInventory().getType() == InventoryType.DISPENSER ) {
             if (isCustomEgg(e.getCurrentItem())) {
                 e.setCancelled(true);
@@ -75,6 +82,7 @@ public class Event implements Listener {
             e.setCancelled(true);
         }
     }
+
 
     private boolean isCustomEgg(ItemStack item) {
         if (item == null || !item.hasItemMeta()) {
